@@ -1,0 +1,9 @@
+.tabla-indicadores {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.mat-header-cell{
+    text-align: center;
+    font-weight: bold;
+}
