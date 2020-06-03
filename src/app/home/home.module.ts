@@ -6,12 +6,14 @@ import { NgxGaugeModule } from 'ngx-gauge';
 import { ChartsModule } from 'ng2-charts';
 import { DailyIndicatorTableComponent } from './daily-indicator-table/daily-indicator-table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IndicatorSerieGraphComponent } from './indicator-serie-graph/indicator-serie-graph.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    DailyIndicatorTableComponent
+    DailyIndicatorTableComponent,
+    IndicatorSerieGraphComponent
   ],
   imports: [
     CommonModule,
