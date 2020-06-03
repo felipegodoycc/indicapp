@@ -1,4 +1,13 @@
-.graph {
-    background-color: rgb(40, 40, 40);
+.graph-container {
     margin: auto;
+}
+.graph {
+    background-color: rgb(240, 240, 240);
+    margin: 10px auto;
+}
+
+.label-select {
+    font-size: 16px;;
+    margin-right: 10px;
+    font-weight: bold;
 }

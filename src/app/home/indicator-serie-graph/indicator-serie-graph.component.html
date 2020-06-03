@@ -1,9 +1,11 @@
-<div>
+<div class="graph-container">
+    <label class="label-select">Ver indicador: </label>
     <mat-form-field class="options-select">
-        <mat-select (selectionChange)="detectSelect($event)" [placeholder]="'Seleccione indicador'">
+        <mat-select (selectionChange)="detectSelect($event)" [placeholder]="'Seleccione'">
             <mat-option *ngFor="let op of selectOptions" [value]="op.value">{{ op.label }}</mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-divider></mat-divider>
     <div class="graph" *ngIf="dataLoaded">
         <canvas baseChart
                 [datasets]="lineChartData"

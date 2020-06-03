@@ -17,23 +17,23 @@ export class IndicatorSerieGraphComponent implements OnInit {
   public lineChartOptions: ChartOptions = { 
     responsive: true,
     legend: {
-      labels: { fontColor: 'white' }
+      labels: { fontColor: 'black' }
     },
     scales: {
       xAxes: [{
-        ticks: { fontColor: 'white' },
-        gridLines: { color: 'rgba(255,255,255,0)' }
+        ticks: { fontColor: 'black' },
+        gridLines: { color: 'gray' }
       }],
       yAxes: [{
-        ticks: { fontColor: 'white' },
-        gridLines: { color: 'rgba(255,255,255,0)' }
+        ticks: { fontColor: 'black' },
+        gridLines: { color: 'gray' }
       }]
     }
   };
   public lineChartColors: Color[] = [
     {
-      borderColor: 'black',
-      backgroundColor: 'rgba(123,31,162,0.2)',
+      borderColor: 'rgba(123,31,162,1)',
+      backgroundColor: 'rgba(123,31,162,0.6)',
     },
   ];
   public lineChartLegend = true;
