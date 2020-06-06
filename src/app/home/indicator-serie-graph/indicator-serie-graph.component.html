@@ -1,23 +1,26 @@
 <div class="graph-container">
-    <label class="label-select">Ver indicador: </label>
-    <mat-form-field class="options-select">
-        <mat-select (selectionChange)="detectSelect($event)" [placeholder]="'Seleccione'">
-            <mat-option *ngFor="let op of selectOptions" [value]="op.value">{{ op.label }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-divider></mat-divider>
-    <div class="graph" *ngIf="dataLoaded">
-        <canvas baseChart
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins">        
-        </canvas>
-    </div>
-    <div *ngIf="!dataLoaded">
-        <h3>Seleccione un indicador para cargar grafico</h3>
-    </div>
+        <label class="label-select">Ver indicador: </label>
+        <mat-form-field class="options-select">
+            <mat-select (selectionChange)="detectSelect($event)" [placeholder]="'Seleccione'" [(value)]="selected">
+                <mat-option *ngFor="let op of selectOptions" [value]="op.value">{{ op.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <div *ngIf="loading">
+            <mat-spinner style="margin:10% auto;"></mat-spinner>
+        </div>
+        <div class="graph" *ngIf="dataLoaded && !loading">
+            <canvas baseChart
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins">        
+            </canvas>
+        </div>
+        <div *ngIf="!dataLoaded">
+            <h3>Seleccione un indicador para cargar grafico</h3>
+        </div>
 </div>

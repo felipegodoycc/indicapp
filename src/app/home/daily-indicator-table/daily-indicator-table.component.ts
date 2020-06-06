@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { IndicatorService } from 'src/app/shared/services/indicator.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { AllIndicators, Indicator } from 'src/app/shared/models/indicator.model';
+import { Indicator } from 'src/app/shared/models/indicator.model';
 
 @Component({
   selector: 'app-daily-indicator-table',
@@ -25,10 +25,10 @@ export class DailyIndicatorTableComponent implements OnInit {
 
   loadData(){
     this.indicatorService.getDailyIndicators().subscribe( res => {
-      const items = Object.keys(res).reduce( (acc, cur) => res[cur].codigo ? [ ...acc, { ...res[cur] } ] : acc , []);
-      this.datasource = new MatTableDataSource<Indicator>(items);
+      this.loading = false;
+      this.datasource = new MatTableDataSource<Indicator>(res);
       this.datasource.paginator = this.paginator;
-      this.totalIndicators = items.length;
+      this.totalIndicators = res.length;
     })
   }
 

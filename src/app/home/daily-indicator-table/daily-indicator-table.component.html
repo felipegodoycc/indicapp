@@ -1,5 +1,8 @@
 <div class="daily-container">
-    <table mat-table [dataSource]="datasource" class="tabla-indicadores">
+    <div *ngIf="loading">
+        <mat-spinner style="margin:10% auto;"></mat-spinner>
+    </div>
+    <table *ngIf="!loading" mat-table [dataSource]="datasource" class="tabla-indicadores">
         <ng-container matColumnDef="codigo">
             <th mat-header-cell *matHeaderCellDef> Nombre </th>
             <td mat-cell *matCellDef="let indicator">{{ indicator.nombre }}</td>

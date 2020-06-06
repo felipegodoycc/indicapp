@@ -11,8 +11,8 @@ import { map, shareReplay } from 'rxjs/operators';
 export class BaseComponent implements OnInit {
 
   menuLinks = [
-    { path: '' , label: 'Home'},
-    { path: '#' , label: 'Test'}
+    { path: '' , label: 'Inicio'},
+    { path: '#' , label: 'Buscar'}
   ]
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

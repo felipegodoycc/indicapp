@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AllIndicators, Indicator } from '../models/indicator.model';
+import { Indicator } from '../models/indicator.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ export class IndicatorService {
   apiUrl = 'https://mindicador.cl/api'
   constructor(private _httpClient: HttpClient) { }
 
-  getDailyIndicators(): Observable<AllIndicators>{
-    return this._httpClient.get<AllIndicators>(this.apiUrl);
+  getDailyIndicators(): Observable<Indicator[]>{
+    return this._httpClient.get<Indicator[]>(this.apiUrl)
+                           .pipe( map( res => Object.keys(res).reduce( (acc, cur) => res[cur].codigo ? [ ...acc, { ...res[cur] } ] : acc , []) ));
   }
 
   getIndicator(name: string): Observable<Indicator>{

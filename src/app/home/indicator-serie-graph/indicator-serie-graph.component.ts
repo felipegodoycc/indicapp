@@ -10,6 +10,8 @@ import { Label, Color } from 'ng2-charts';
 })
 export class IndicatorSerieGraphComponent implements OnInit {
   selectOptions: { value: string, label: string}[];
+  selected = '';
+  loading = true;
   dataLoaded:boolean = false;
 
   public lineChartData: ChartDataSets[] = [{}];
@@ -39,7 +41,6 @@ export class IndicatorSerieGraphComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = 'line';
   public lineChartPlugins = [];
-
   constructor(private _indicatorService: IndicatorService) { }
 
   ngOnInit() {
@@ -49,16 +50,20 @@ export class IndicatorSerieGraphComponent implements OnInit {
   loadSelectOptions(){
     this._indicatorService.getDailyIndicators().subscribe( res => {
       this.selectOptions = Object.keys(res).reduce( (acc,key) => res[key].codigo ? [...acc, { value: res[key].codigo, label: res[key].nombre}] : acc ,[]);
+      this.selected = this.selectOptions.length > 0 ? this.selectOptions[0].value : '';
+      if(this.selected != '') this.loadData(this.selected);
     })
   }
 
   loadData(codigo: string){
+    this.loading = true;
     this._indicatorService.getIndicator(codigo).subscribe( res => {
       const serie = res.serie.reduce( (acc, cur) => {
         acc.valores.push(cur.valor);
         acc.labels.push(new Date(cur.fecha).toLocaleDateString());
         return acc;
       } , { valores: [], labels: []});
+      this.loading = false;
       this.dataLoaded = true;
       this.lineChartData = [{ data: serie.valores.reverse(), label: res.nombre }]
       this.lineChartLabels = serie.labels.reverse();
