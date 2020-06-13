@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  mqtt-dashboard:
+    container_name: app-indicadores
+    build: .
+    ports:
+      - "8083:80"
+    networks:
+      - mynetwork
+
+networks:
+      mynetwork:
+        external: true
